@@ -65,6 +65,7 @@ followersArray.forEach((profileURL) => {
     const githubObj = res.data;
     const profileCard = cardMaker(githubObj);
     cards.appendChild(profileCard);
+    console.log(res.data);
   })
   .catch((err) => {
     console.log(err);
@@ -93,7 +94,7 @@ followersArray.forEach((profileURL) => {
     </div>
 */
 
-const cardMaker = function(obj){
+const cardMaker = function(obj){ //{name, login, location, url, followers, following, bio}
   const card = document.createElement('div');
   const image = document.createElement('img');
   const cardInfo = document.createElement('div');
@@ -110,6 +111,18 @@ const cardMaker = function(obj){
   cardInfo.classList.add('card-info');
   name.classList.add('name');
   username.classList.add('username');
+  
+  image.src = obj.avatar_url;
+  githubAddress.href = obj.html_url;
+
+  name.textContent = obj.name;
+  username.textContent = obj.login;
+  userLocation.textContent = `Location: ${obj.location}`;
+  profile.textContent = `Profile: `;
+  followers.textContent = `Followers: ${obj.followers}`;
+  following.textContent = `Following: ${obj.following}`;
+  bio.textContent = `Bio: ${obj.bio}`;
+  githubAddress.textContent = `${obj.html_url}`
 
   card.appendChild(image);
   card.appendChild(cardInfo);
@@ -120,20 +133,7 @@ const cardMaker = function(obj){
   cardInfo.appendChild(followers);
   cardInfo.appendChild(following);
   cardInfo.appendChild(bio);
-
   profile.appendChild(githubAddress);
-  
-  image.src = obj.avatar_url;
-  githubAddress.href = obj.url;
-
-  name.textContent = obj.name;
-  username.textContent = obj.login;
-  userLocation.textContent = `Location: ${obj.location}`;
-  profile.textContent = `Profile: ${obj.url}`;
-  followers.textContent = `Followers: ${obj.followers}`;
-  following.textContent = `Following: ${obj.following}`;
-  bio.textContent = `Bio: ${obj.bio}`;
-
 
   return card;
 }
