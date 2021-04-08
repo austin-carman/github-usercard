@@ -50,7 +50,7 @@ axios
 const followersArray = [
   'tetondan',
   'dustinmyers',
-  'justml',
+  'justsml',
   'luishrd',
   'bigknell'
 ];
