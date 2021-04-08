@@ -65,7 +65,6 @@ followersArray.forEach((profileURL) => {
     const githubObj = res.data;
     const profileCard = cardMaker(githubObj);
     cards.appendChild(profileCard);
-    console.log(res.data);
   })
   .catch((err) => {
     console.log(err);
